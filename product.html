@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Items</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .food-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .food-id {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .food-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .food-info {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .food-info strong {
+            color: #333;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .map-link, .call-link {
+            flex: 1;
+            display: inline-block;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s;
+            text-align: center;
+        }
+        .map-link {
+            background: #1a73e8;
+        }
+        .map-link:hover {
+            background: #1557b0;
+        }
+        .call-link {
+            background: #34A853;
+        }
+        .call-link:hover {
+            background: #2d8644;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 16px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="food-grid" id="foodGrid">
+            <div class="loading">Loading food items...</div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDU9W-SizWu6OMx-Yon8r-jX9MpqAwYeHQ",
+            authDomain: "food-5c272.firebaseapp.com",
+            databaseURL: "https://food-5c272-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "food-5c272",
+            storageBucket: "food-5c272.firebasestorage.app",
+            messagingSenderId: "188197961390",
+            appId: "1:188197961390:web:967076142ccc8bee11b73f",
+            measurementId: "G-JXRRV76WQ8"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase();
+
+        // Create HTML for a food item
+        function createFoodCard(id, data) {
+            return `
+                <div class="food-card">
+                    <div class="food-id">ID: ${id}</div>
+                    <div class="food-name">${data.foodName || 'Unnamed Food'}</div>
+                    <div class="food-info">
+                        <strong>Meal Type:</strong> 
+                        <span>${data.mealType || 'N/A'}</span>
+                    </div>
+                    <div class="food-info">
+                        <strong>Category:</strong> 
+                        <span>${data.category || 'N/A'}</span>
+                    </div>
+                    <div class="food-info">
+                        <strong>Quantity:</strong> 
+                        <span>${data.quantity || 'N/A'}</span>
+                    </div>
+                    <div class="food-info">
+                        <strong>District:</strong> 
+                        <span>${data.district || 'N/A'}</span>
+                    </div>
+                    <div class="food-info">
+                        <strong>Address:</strong> 
+                        <span>${data.address || 'N/A'}</span>
+                    </div>
+                    <div class="food-info">
+                        <strong>Phone:</strong> 
+                        <span>${data.phoneNumber || 'N/A'}</span>
+                    </div>
+                    <div class="action-buttons">
+                        ${data.mapLink ? 
+                            `<a href="${data.mapLink}" target="_blank" class="map-link">
+                                📍 View in Map
+                            </a>` : 
+                            ''}
+                        ${data.phoneNumber ? 
+                            `<a href="tel:${data.phoneNumber}" class="call-link">
+                                📞 Call Now
+                            </a>` : 
+                            ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fetch and display food items
+        async function displayFoodItems() {
+            const foodGrid = document.getElementById('foodGrid');
+            
+            try {
+                const snapshot = await get(ref(database, 'FOOD'));
+                
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    let html = '';
+                    
+                    // Process each food item (F1, F2, etc.)
+                    for (const [foodId, foodData] of Object.entries(data)) {
+                        html += createFoodCard(foodId, foodData);
+                    }
+                    
+                    foodGrid.innerHTML = html;
+                } else {
+                    foodGrid.innerHTML = '<div class="loading">No food items found</div>';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                foodGrid.innerHTML = '<div class="loading">Error loading food items</div>';
+            }
+        }
+
+        // Initialize when the page loads
+        document.addEventListener('DOMContentLoaded', displayFoodItems);
+    </script>
+</body>
+</html>

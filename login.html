@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            width: 90%;
+            max-width: 1200px;
+            height: 80vh;
+            display: flex;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-box,
+        .right-box {
+            width: 50%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .left-box {
+            background-color: #ffffff;
+        }
+
+        .left-box img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .left-box h1 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .left-box p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .social-icons {
+            margin: 20px 0;
+        }
+
+        .social-btn {
+            border: none;
+            padding: 12px;
+            margin: 10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .facebook {
+            background-color: #3b5998;
+            color: white;
+        }
+
+        .google {
+            background-color: #dd4b39;
+            color: white;
+        }
+
+        .linkedin {
+            background-color: #0077b5;
+            color: white;
+        }
+
+        .or-text {
+            margin: 20px 0;
+            font-size: 16px;
+            color: #999;
+        }
+
+        form input {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .sign-in {
+            width: 100%;
+            padding: 14px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .right-box {
+            background: #e0f7fa;
+            color: #333;
+        }
+
+        .right-box h2 {
+            font-size: 32px;
+            color: #00796b;
+        }
+
+        .right-box p {
+            font-size: 18px;
+            margin: 15px 0;
+            color: #555;
+        }
+
+        .sign-up {
+            background: #0288d1;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #notification {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1001;
+        }
+
+        #notification.error {
+            background-color: #f44336;
+        }
+
+        /* Sign Up Form Popup */
+        .sign-up-form-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .sign-up-form-box {
+            background-color: #fff;
+            padding: 40px;
+            width: 400px;
+            border-radius: 8px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .sign-up-form-box input {
+            width: 100%;
+            padding: 14px;
+            margin: 12px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .sign-up-form-box button {
+            padding: 14px;
+            background-color: #0288d1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .sign-up-form-box .cancel-btn {
+            background-color: #f44336;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .login-box {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .left-box,
+            .right-box {
+                width: 100%;
+                padding: 30px;
+            }
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview {
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            margin-top: 30px !important;
+            padding: clamp(17px, 5%, 40px) clamp(17px, 7%, 50px) !important;
+            max-width: none !important;
+            border-radius: 6px !important;
+            box-shadow: 0 5px 25px rgba(34, 60, 47, 0.25) !important;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview,
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview * {
+            box-sizing: border-box !important;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-heading {
+            width: 100% !important;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-heading h5 {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-input-field {
+            margin-top: 20px !important;
+            width: 100% !important;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-input-field input {
+            width: 100% !important;
+            height: 40px !important;
+            border-radius: 6px !important;
+            border: 2px solid #e9e8e8 !important;
+            background-color: #fff;
+            outline: none !important;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-input-field input {
+            color: #000000 !important;
+            font-family: "Montserrat" !important;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-input-field input::placeholder {
+            color: #000000 !important;
+            opacity: 1 !important;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-input-field input:-ms-input-placeholder {
+            color: #000000 !important;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-input-field input::-ms-input-placeholder {
+            color: #000000 !important;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-submit-button {
+            margin-top: 10px !important;
+            width: 100% !important;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-submit-button button {
+            width: 100% !important;
+            height: 40px !important;
+            border: 0 !important;
+            border-radius: 6px !important;
+            line-height: 0px !important;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .form-preview .preview-submit-button button:hover {
+            cursor: pointer !important;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .powered-by-line {
+            color: #231f20 !important;
+            font-family: "Montserrat" !important;
+            font-size: 13px !important;
+            font-weight: 400 !important;
+            line-height: 25px !important;
+            text-align: center !important;
+            text-decoration: none !important;
+            display: flex !important;
+            width: 100% !important;
+            justify-content: center !important;
+            align-items: center !important;
+            margin-top: 10px !important;
+        }
+
+        .followit--follow-form-container[attr-a][attr-b][attr-c][attr-d][attr-e][attr-f] .powered-by-line img {
+            margin-left: 10px !important;
+            height: 1.13em !important;
+            max-height: 1.13em !important;
+        }
+    </style>
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+</head>
+
+<body>
+    <div id="notification"></div>
+
+    <div class="container">
+        <div class="login-box">
+            <div class="left-box">
+                <img src="/img/user-icon.jpeg" alt="Anonymous Avatar">
+                <h1>Login to Your Account</h1>
+                <p>Login using social networks</p>
+                <div class="social-icons">
+                    <button class="social-btn facebook" onclick="signInWithFacebook()">
+                        <i class="fa-brands fa-facebook fa-xl"></i>
+                    </button>
+                    <button class="social-btn google" onclick="signInWithGoogle()">
+                        <i class="fa-brands fa-google fa-xl"></i>
+                    </button>
+                    <button class="social-btn linkedin" onclick="signInWithLinkedIn()">
+                        <i class="fa-brands fa-linkedin fa-xl"></i>
+                    </button>
+                </div>
+                <p class="or-text">OR</p>
+                <form id="login-form">
+                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button type="submit" class="sign-in">Sign In</button>
+                    <a href="#" onclick="resetPassword()"
+                        style="display: block; margin-top: 10px; text-decoration: none; color: #007bff;">Forgot
+                        Password?</a>
+                </form>
+            </div>
+            <div class="right-box">
+                <h2>New Here?</h2>
+                <p>Sign up and discover a great amount of new opportunities!</p>
+                <button class="sign-up" onclick="OpensignUpForm()">Sign Up</button>
+                <div class="container">
+                    <h1>Subscribe to Our Newsletter</h1>
+                    <form id="newsletterForm">
+                        <div class="form-group">
+                            <input 
+                                type="email" 
+                                id="email" 
+                                placeholder="Enter your email address"
+                                required
+                            >
+                        </div>
+                        <button type="submit">
+                            <span class="loading" id="loadingSpinner"></span>
+                            <span id="buttonText">Subscribe</span>
+                        </button>
+                    </form>
+                    <div class="status" id="status"></div>
+                </div>
+            
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="sign-up-form-container" id="signUpFormContainer">
+        <div class="sign-up-form-box">
+            <h1>Create Your Account</h1>
+            <form id="signUpForm">
+                <input type="text" id="signUpName" placeholder="Full Name" required>
+                <input type="email" id="signUpEmail" placeholder="Email" required>
+                <input type="password" id="signUpPassword" placeholder="Password" required>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                <button type="button" onclick="handleSignUp()">Sign Up</button>
+                <button type="button" class="cancel-btn" onclick="ClosesignUpForm()">Cancel</button>
+            </form>
+        </div>
+        
+    </div>
+    
+    <script>
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyDU9W-SizWu6OMx-Yon8r-jX9MpqAwYeHQ",
+            authDomain: "food-5c272.firebaseapp.com",
+            databaseURL: "https://food-5c272-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "food-5c272",
+            storageBucket: "food-5c272.firebasestorage.app",
+            messagingSenderId: "188197961390",
+            appId: "1:188197961390:web:967076142ccc8bee11b73f",
+            measurementId: "G-JXRRV76WQ8"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        document.getElementById("login-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    showNotification("Login Successful!");
+                })
+                .catch((error) => {
+                    showNotification("Login Failed: " + error.message, true);
+                });
+        });
+
+        function signInWithFacebook() {
+            signInWithProvider(new firebase.auth.FacebookAuthProvider());
+        }
+
+        function signInWithGoogle() {
+            signInWithProvider(new firebase.auth.GoogleAuthProvider());
+        }
+
+        function signInWithLinkedIn() {
+            signInWithProvider(new firebase.auth.OAuthProvider('linkedin.com'));
+        }
+
+        function signInWithProvider(provider) {
+            auth.signInWithPopup(provider)
+                .then(() => showNotification("Social Login Successful!"))
+                .catch((error) => showNotification("Social Login Failed: " + error.message, true));
+        }
+
+        function resetPassword() {
+            const email = prompt("Enter the email address associated with your account:");
+            if (email) {
+                auth.sendPasswordResetEmail(email)
+                    .then(() => showNotification("Password reset email sent! Check your inbox."))
+                    .catch((error) => showNotification("Password reset failed: " + error.message, true));
+            } else {
+                showNotification("Please enter your email address.", true);
+            }
+        }
+
+        function showNotification(message, isError = false) {
+            const notificationDiv = document.getElementById('notification');
+            notificationDiv.textContent = message;
+            notificationDiv.className = isError ? 'error' : '';
+            notificationDiv.style.display = 'block';
+
+            setTimeout(() => notificationDiv.style.display = 'none', 5000);
+        }
+
+        function OpensignUpForm() {
+            document.getElementById('signUpFormContainer').style.display = 'flex';
+        }
+
+        function ClosesignUpForm() {
+            document.getElementById('signUpFormContainer').style.display = 'none';
+        }
+
+        function handleSignUp() {
+            const name = document.getElementById('signUpName').value;
+            const email = document.getElementById('signUpEmail').value;
+            const password = document.getElementById('signUpPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match."); // Simple alert for now
+                return;
+            }
+
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    ClosesignUpForm();
+                    showNotification("Sign Up Successful!");
+
+                    userCredential.user.updateProfile({
+                        displayName: name
+                    }).then(() => {
+                        // Profile updated successfully
+                    }).catch((error) => {
+                        console.error("Error updating profile:", error);
+                    });
+
+                })
+                .catch((error) => {
+                    alert("Sign Up Failed: " + error.message); // Simple alert
+                    console.error("Sign Up Failed:", error);
+                });
+        }
+
+        
+    </script>
+</body>
+
+</html>

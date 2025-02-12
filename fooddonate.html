@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Donate</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Container Styles */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: large;
+        }
+
+        .regformf {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* Logo Styles */
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* Input Field Styles */
+        .input {
+            margin-bottom: 20px;
+        }
+
+        .input label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .input input[type="text"],
+        .input select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #FF9800;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Radio Button Styles */
+        .radio {
+            margin: 20px 0;
+        }
+
+        .radio input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        .radio label {
+            margin-right: 20px;
+        }
+
+        /* Image Radio Group Styles */
+        .image-radio-group {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .image-radio-group input[type="radio"] {
+            display: none;
+        }
+
+        .image-radio-group label {
+            cursor: pointer;
+            padding: 10px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .image-radio-group label:hover {
+            border-color: #06C167;
+        }
+
+        .image-radio-group input[type="radio"]:checked+label {
+            border-color: #06C167;
+            background-color: rgba(6, 193, 103, 0.1);
+        }
+
+        .image-radio-group img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* Submit Button Styles */
+        .btn {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn button {
+            background-color: #06C167;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn button:hover {
+            background-color: #05a057;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .regformf {
+                padding: 20px;
+            }
+
+            .image-radio-group {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .image-radio-group img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-image: linear-gradient(#A5D6A7, #76AC64);">
+    <div class="container">
+        <div class="regformf">
+            <form id="donationForm">
+                <h1 class="logo" style="color: #FE8A54">Food <b style="color: #76AC64;">Donate</b></h1>
+                <div class="input">
+                    <label for="foodname">Food Name :</label>
+                    <input type="text" id="foodname" name="foodname" required />
+                </div>
+                <div class="radio">
+                    <label for="meal">Meal type :</label>
+                    <input type="radio" name="meal" id="veg" value="veg" required />
+                    <label for="veg" style="padding-right: 40px;">Veg</label>
+                    <input type="radio" name="meal" id="Non-veg" value="Non-veg">
+                    <label for="Non-veg">Non-veg</label>
+                </div>
+                <div class="input">
+                    <label for="food">Select the Category :</label>
+                    <div class="image-radio-group">
+                        <input type="radio" id="raw-food" name="image-choice" value="raw-food">
+                        <label for="raw-food">
+                            <img src="img/raw-food.png" alt="raw-food">
+                        </label>
+                        <input type="radio" id="cooked-food" name="image-choice" value="cooked-food" checked>
+                        <label for="cooked-food">
+                            <img src="img/cooked-food.png" alt="cooked-food">
+                        </label>
+                        <input type="radio" id="packed-food" name="image-choice" value="packed-food">
+                        <label for="packed-food">
+                            <img src="img/packed-food.png" alt="packed-food">
+                        </label>
+                    </div>
+                </div>
+                <div class="input">
+                    <label for="quantity">Quantity (number of persons / kg):</label>
+                    <input type="text" id="quantity" name="quantity" required />
+                </div>
+                <b>
+                    <p style="text-align: center; font-size: x-large;">Contact Details</p>
+                </b>
+                <div class="input">
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required />
+                    </div><br>
+                    <div>
+                        <label for="phoneno">Phone No:</label>
+                        <input type="text" id="phoneno" name="phoneno" maxlength="10" pattern="[0-9]{10}" required />
+                    </div><br>
+                </div>
+                <div class="input">
+                    <label for="district">District:</label>
+                    <select id="district" name="district" style="padding:10px;">
+                        <option value="amritsar">Amritsar</option>
+                        <option value="barnala">Barnala</option>
+                        <option value="bathinda">Bathinda</option>
+                        <option value="faridkot">Faridkot</option>
+                        <option value="fatehgarh sahib">Fatehgarh Sahib</option>
+                        <option value="fazilka">Fazilka</option>
+                        <option value="firozpur">Firozpur</option>
+                        <option value="gurdaspur">Gurdaspur</option>
+                        <option value="hoshiarpur">Hoshiarpur</option>
+                        <option value="jalandhar">Jalandhar</option>
+                        <option value="kapurthala">Kapurthala</option>
+                        <option value="ludhiana">Ludhiana</option>
+                        <option value="mansa">Mansa</option>
+                        <option value="moga">Moga</option>
+                        <option value="mohali">Mohali</option>
+                        <option value="pathankot">Pathankot</option>
+                        <option value="patiala">Patiala</option>
+                        <option value="rupnagar">Rupnagar</option>
+                        <option value="sangrur">Sangrur</option>
+                        <option value="shaheed bhagat singh nagar">Shaheed Bhagat Singh Nagar</option>
+                        <option value="tarn taran">Tarn Taran</option>
+                    </select> <br><br>
+                    <label for="address" style="padding-left: 10px;">Address:</label>
+                    <input type="text" id="address" name="address" required /><br>
+                </div>
+                <!-- GPS Location Button and Display -->
+                <div class="input">
+                    <button type="button" id="getLocation"
+                        style="background-color: #06C167; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 10px;">Get
+                        GPS Location</button>
+                    <p id="locationStatus" style="margin: 10px 0;"></p>
+                    <input type="hidden" id="latitude" name="latitude">
+                    <input type="hidden" id="longitude" name="longitude">
+                </div>
+                <div class="btn">
+                    <button type="submit" name="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDU9W-SizWu6OMx-Yon8r-jX9MpqAwYeHQ",
+            authDomain: "food-5c272.firebaseapp.com",
+            databaseURL: "https://food-5c272-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "food-5c272",
+            storageBucket: "food-5c272.firebasestorage.app",
+            messagingSenderId: "188197961390",
+            appId: "1:188197961390:web:967076142ccc8bee11b73f",
+            measurementId: "G-JXRRV76WQ8"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        // Function to get the next food ID (F1, F2, F3, etc.)
+        async function getNextFoodId() {
+            try {
+                const snapshot = await database.ref('FOOD').orderByKey().limitToLast(1).once('value');
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    const lastKey = Object.keys(data)[0];
+                    const lastNumber = parseInt(lastKey.substring(1)) || 0;
+                    return `F${lastNumber + 1}`;
+                } else {
+                    return 'F1';
+                }
+            } catch (error) {
+                console.error('Error getting next ID:', error);
+                return 'F1';
+            }
+        }
+
+        // GPS Location Handler
+        document.getElementById('getLocation').addEventListener('click', function () {
+            const locationStatus = document.getElementById('locationStatus');
+
+            if (navigator.geolocation) {
+                locationStatus.textContent = 'Fetching location...';
+
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        document.getElementById('latitude').value = position.coords.latitude;
+                        document.getElementById('longitude').value = position.coords.longitude;
+                        locationStatus.textContent = `Location captured successfully! Lat: ${position.coords.latitude}, Long: ${position.coords.longitude}`;
+                    },
+                    (error) => {
+                        locationStatus.textContent = 'Error getting location: ' + error.message;
+                    }
+                );
+            } else {
+                locationStatus.textContent = 'Geolocation is not supported by this browser.';
+            }
+        });
+
+        // Form Submission Handler
+        document.getElementById('donationForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            try {
+                const nextId = await getNextFoodId();
+
+                const formData = {
+                    foodName: document.getElementById('foodname').value,
+                    mealType: document.querySelector('input[name="meal"]:checked').value,
+                    category: document.querySelector('input[name="image-choice"]:checked').value,
+                    quantity: document.getElementById('quantity').value,
+                    name: document.getElementById('name').value,
+                    phoneNumber: document.getElementById('phoneno').value,
+                    district: document.getElementById('district').value,
+                    address: document.getElementById('address').value,
+                    latitude: document.getElementById('latitude').value,
+                    longitude: document.getElementById('longitude').value,
+                    timestamp: firebase.database.ServerValue.TIMESTAMP
+                };
+
+                await database.ref('FOOD/' + nextId).set(formData);
+                alert('Food donation submitted successfully!');
+                this.reset();
+                document.getElementById('locationStatus').textContent = '';
+
+            } catch (error) {
+                alert('Error submitting donation: ' + error.message);
+            }
+        });
+    </script>
+</body>
+
+</html>

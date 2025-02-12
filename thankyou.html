@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You for Your Donation!</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .container {
+            background: linear-gradient(145deg, #ffffff, #f3f3f3);
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            padding: 80px 50px;
+            max-width: 500px;
+            margin: 100px auto;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .container:hover {
+            transform: translateY(-5px);
+        }
+        h1 {
+            color: #76AC64;
+            font-size: 40px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        p {
+            font-size: 22px;
+            color: #555;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        .checkmark {
+            font-size: 90px;
+            color: #FE8A54;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(255, 138, 84, 0.5);
+            display: flex;
+            justify-content: center;
+        }
+        .btn {
+            padding: 20px 50px;
+            background-color: #76AC64;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            letter-spacing: 1px;
+        }
+        .btn:hover {
+            background-color: #6b9c56;
+            transform: scale(1.05);
+        }
+        footer {
+            margin-top: 80px;
+            font-size: 14px;
+            color: #777;
+        }
+        footer a {
+            color: #76AC64;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="checkmark">
+            <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+            <dotlottie-player src="https://lottie.host/c443d28e-e0eb-46cc-8d73-24b8b76261c9/sUTRrPAPZq.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
+        </div>
+        <h1>Thank You for Your Generosity!</h1>
+        <p>Your donation has been successfully received. Your support helps us make a meaningful impact on our cause. We truly appreciate your contribution!</p>
+        <a href="home.html" class="btn">Back to Home</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 <a href="#">Your Organization</a>. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

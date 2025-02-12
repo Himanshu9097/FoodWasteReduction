@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contact</title>
+    <link rel="stylesheet" href="home.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #F5F5F5;
+  color: #424242;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Styles */
+header {
+  background-color: #2A293B;
+  margin: 20px auto; /* Centered */
+  border-radius: 25px;
+  width: 90%;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+header .logo {
+  font-size: 24px;
+  color: #FFFFFF;
+}
+
+header .hamburger {
+  cursor: pointer;
+}
+
+/* Navigation Styles */
+.nav-bar ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-bar ul li a {
+  text-decoration: none;
+  color: #FFFFFF;
+  padding: 10px 15px;
+}
+
+.nav-bar ul li a.active {
+  background-color: #A5D6A7;
+  color: #424242;
+}
+
+
+
+/* Heading Styles */
+.heading {
+  text-align: center;
+  font-size: 28px;
+  margin: 20px 0;
+  color: #2A293B;
+}
+
+/* Contact Form Styles */
+.contact-form {
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto; 
+}
+
+.contact-form label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.contact-form input[type="submit"] {
+  background-color: #FF9800;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form input[type="submit"]:hover {
+  background-color: #FFC107;
+}
+
+.contact-info {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.accordion {
+  background-color: #A5D6A7;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  width: 90%; 
+  margin: 10px auto; 
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: background 0.3s ease;
+  border-radius: 5px;
+  margin-left: 60px;
+}
+
+.accordion.active, .accordion:hover {
+  background-color: #4CAF50; 
+}
+
+.panel {
+  padding: 0 15px 0 15px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+
+
+
+
+@media (max-width: 767px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .accordion {
+    width: 100%;
+  }
+
+  .contact-form {
+    padding: 15px;
+  }
+
+  .heading {
+    font-size: 24px; 
+  }
+}
+
+    </style>
+
+</head>
+
+
+<body>
+	<header>
+        <div class="logo">Food <b style="color: #06C167;">Donate</b></div>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+        <nav class="nav-bar">
+          <ul>
+            <li><a href="home.html" >Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="fooddonate.html">Add Food</a></li>
+            <li><a href="product.html">View Food</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </nav>
+    </header>
+    <!-- <script>
+        hamburger=document.querySelector(".hamburger");
+        hamburger.onclick =function(){
+            navBar=document.querySelector(".nav-bar");
+            navBar.classList.toggle("active");
+        }
+    </script> -->
+    <section class="cover" >
+        
+    </section>
+	<p class="heading" style=" margin: 20px;">contact us </p>
+    
+     
+	
+   <!-- <h1 class="heading">Contact Us</h1>  -->
+   <div class="contact-form"> 
+    <form action="https://formspree.io/f/mqaebkow" method="post"> <label for="name">Name:</label> 
+     <input type="text" id="name" name="name">
+     <br> <label for="email">Email:</label> 
+     <input type="email" id="email" name="email">
+     <br> <label for="message">Message:</label> <textarea id="message" name="message"></textarea>
+     <br> 
+     <input type="submit" value="Send" name="send"> 
+    </form> 
+   </div> 
+   <div class="contact-info" style="padding: 10px;"> 
+    <p>Email: himanshu748808@gmail.com</p> <br>
+    <p>Phone: 9102309204</p> <br>
+    <p>Address: Lovely Professional University</p> 
+   </div>
+ 
+
+<button class="accordion">how to donate food ?</button><br>
+<div class="panel">
+  <p>1)click on <a href="fooddonate.html">donate</a> in home page </p><br>
+  <p>2)fill the details </p><br>
+  <p>3)click on submit</p><br>
+ <!-- <img src="img/mobile.jpg" alt="" width="100%"> -->
+</div>
+
+<button class="accordion">How to donate food?</button>
+<div class="panel">
+  <p>1) Click on <a href="fooddonate.html">donate</a> on the home page.</p>
+  <p>2) Fill in the details.</p>
+  <p>3) Click on submit.</p>
+</div>
+
+<button class="accordion">How will my donation be used?</button>
+<div class="panel">
+  <p>Your donation will be used to support our mission and various programs...</p>
+</div>
+
+<button class="accordion">What should I do if my food donation is near or past its expiration date?</button>
+<div class="panel">
+  <p>We appreciate your willingness to donate, but to ensure the safety...</p>
+</div>
+
+  </div>
+
+  </div>
+ 
+    
+</body>
+<!-- <script type="text/javascript" src="chatbot/chatbot.js" ></script>
+<script type="text/javascript" src="chatbot/constants.js" ></script> 
+<script type="text/javascript" src="chatbot/speech.js" ></script>
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    
+    for (i = 0; i < acc.length; i++) {  
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        } 
+      });
+    }
+    </script> -->
+
+</html>

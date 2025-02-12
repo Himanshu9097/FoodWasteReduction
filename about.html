@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="about.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,500;0,700;0,800;1,400;1,600&display=swap');
+
+:root {
+  --navcolor: white;
+  --navfont: black;
+  --green: #A5D6A7; /* Fixed double hash */
+  --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #F5F5F5;
+  color: #424242;
+}
+
+/* Header Styles */
+header {
+  background-color: #2A293B;
+  margin: 20px auto; /* Centered */
+  border-radius: 25px;
+  width: 90%;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  font-size: 24px;
+  color: #FFFFFF;
+}
+
+header .hamburger {
+  cursor: pointer;
+}
+
+/* Navigation Styles */
+.nav-bar ul {
+  display: flex;
+}
+
+.nav-bar ul li a {
+  text-decoration: none;
+  color: #FFFFFF;
+  padding: 10px 15px;
+}
+
+.nav-bar ul li a.active {
+  background-color: var(--green);
+  color: #424242;
+}
+
+/* Banner Styles */
+.banner {
+  width: 80%;
+  margin: 20px auto;
+  background-color: #FF8A00;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.banner a {
+  background-color: #FF9800;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Donation Section Styles */
+.donation-section {
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 400px;
+  text-align: center;
+  margin: 20px auto; /* Centered */
+}
+
+.donation-button {
+  background-color: var(--green);
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 14px;
+  margin: 4px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.donation-button:hover {
+  background-color: #4CAF50;
+}
+
+.custom-amount {
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #4CAF50;
+  color: #FFFFFF;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 20px;
+}
+
+footer .sociallist ul.social {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+footer .sociallist ul.social li a img {
+  width: 32px;
+  height: 32px;
+}
+
+footer a {
+  color: #FFC107;
+  text-decoration: none;
+}
+
+/* Content Styles */
+.content {
+  padding: 10px;
+  width: 90%;
+  margin: 20px auto; /* Centered */
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FF8A00;
+  border-radius: 20px;
+}
+
+.content p {
+  font-size: 1.1em;
+  color: white;
+  margin: 20px 0;
+  font-weight: 400;
+}
+
+.photo .heading {
+  font-size: 32px;
+  color: #4CAF50;
+  text-align: center;
+}
+
+.deli .para {
+  font-size: 20px;
+  color: #FF9800;
+  text-align: center;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
+  align-items: center;
+}
+
+.box {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.wrapper img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  transition: 0.5s all ease-in-out;
+}
+
+.wrapper img:hover {
+  transform: scale(.9);
+}
+
+/* Responsive Styles */
+@media (max-width: 767px) {
+  .content {
+    padding: 10px;
+  }
+
+  .banner {
+    padding: 10px;
+  }
+
+  .donation-section {
+    padding: 20px;
+  }
+
+  .donation-button {
+    width: 100%; /* Full width on mobile */
+    margin: 5px 0; /* Adjust margin */
+  }
+}
+
+
+.section{
+  margin:20px;  
+}
+
+.title{
+  text-align:center;
+}
+.para{
+  height:100px;
+  width:800px;
+  margin-left: 350px;
+  text-align:center;
+}
+  </style>
+   
+</head>
+
+<body>
+  <header>
+    <div class="logo">Food <b style="color: #06C167;">Donate</b></div>
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <nav class="nav-bar">
+        <ul>
+          <li><a href="home.html" >Home</a></li>
+          <li><a href="about.html"  class="active">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="fooddonate.html">Add Food</a></li>
+          <li><a href="product.html">View Food</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </header>
+  <script>
+    hamburger = document.querySelector(".hamburger");
+    hamburger.onclick = function () {
+      navBar = document.querySelector(".nav-bar");
+      navBar.classList.toggle("active");
+    }
+  </script>
+
+  <br>
+  <br>
+  <!-- <section class="coverc">
+        
+   
+    </section> -->
+    <div class="section">
+    <h1 class="title">"Welcome to <u> Food Donate</u> "</h1>
+    <br>
+    <br>
+    <br>
+    
+    </div>
+    <div class="para">
+      <h3 class="heading">About us</h3>
+      <!-- <p>"Welcome to Food Donate, India's largest and most trusted donating platform that connects donors to verified nonprofits. FoodDonate helps you become a ray of hope for people in need. Choose a cause that is close to your heart and join hands with millions of donors like you who aim to make this world a better place."</p> -->
+  
+      <p>We are a team of passionate individuals committed to addressing the issue of food waste in India. Our goal is to
+        create a system that connects food donors with charities and NGOs, while also reducing the environmental impact of
+        food waste.</p>
+    </div>
+  <!-- <p  style=" font-size:30px ; text-align: center;" > ABOUT <span>US</span> </p> -->
+
+  <!-- <br> -->
+  
+  <br>
+
+
+
+  <br>
+
+
+
+  <div class="map" style="  text-align: center; padding-bottom: 50px;">
+    <p style=" font-size:30px ;"> Location </p>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3410.5528309391116!2d75.7043618752983!3d31.260800059921035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a5fca6a8887f9%3A0x48044ce5b6683280!2sLPU%20FRONT%20ENTRANCE%20GATE!5e0!3m2!1sen!2sin!4v1738245820319!5m2!1sen!2sin"
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+
+
+  <!-- <p class="heading"> Our Story</p>
+     <div class="para">
+       <p>Our journey began with a realization that food waste is a significant problem in India. According to a report by the United Nations, India is the world's second-largest food producer, yet it also has one of the highest rates of food waste. This waste has a significant impact on the environment, as well as on food security in the country.</p>
+     </div> -->
+  <!-- <div class="overview"  style="  text-align: center; padding-bottom: 50px;" >
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=1400 height=800 src="https://edrawcloudpublicus.s3.amazonaws.com/viewer/self/3094230/share/2023-3-2/1677763924/main.svg" id="overview"></iframe>
+     </div> -->
+</body>
+
+</html>

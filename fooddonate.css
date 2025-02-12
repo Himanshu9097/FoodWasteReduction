@@ -1,0 +1,166 @@
+/* Container Styles */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.regformf {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Logo Styles */
+.logo {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* Input Field Styles */
+.input {
+    margin-bottom: 20px;
+}
+
+.input label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.input input[type="text"],
+.input select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Radio Button Styles */
+.radio {
+    margin: 20px 0;
+}
+
+.radio input[type="radio"] {
+    margin-right: 8px;
+}
+
+.radio label {
+    margin-right: 20px;
+}
+
+/* Image Radio Group Styles */
+.image-radio-group {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.image-radio-group input[type="radio"] {
+    display: none;
+}
+
+.image-radio-group label {
+    cursor: pointer;
+    padding: 10px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.image-radio-group label:hover {
+    border-color: #06C167;
+}
+
+.image-radio-group input[type="radio"]:checked + label {
+    border-color: #06C167;
+    background-color: rgba(6, 193, 103, 0.1);
+}
+
+.image-radio-group img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Contact Details Section */
+.input div {
+    margin-bottom: 15px;
+}
+
+/* District and Address Layout */
+.input select {
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Submit Button Styles */
+.btn {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn button {
+    background-color: #06C167;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn button:hover {
+    background-color: #05a057;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .regformf {
+        padding: 20px;
+    }
+    
+    .image-radio-group {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .image-radio-group img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Form Validation Styles */
+input:invalid {
+    border-color: #ff6b6b;
+}
+
+input:valid {
+    border-color: #06C167;
+}
+
+/* Pattern for Phone Number */
+input[pattern]:invalid {
+    border-color: #ff6b6b;
+}
+
+/* Required Field Indicator */
+input:required {
+    border-left: 3px solid #06C167;
+}
